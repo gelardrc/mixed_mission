@@ -1,0 +1,71 @@
+<launch>
+
+  <!-- these are the arguments you can pass this launch file, for example paused:=true -->
+  <arg name="paused" default="false"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+  <arg name="world" default="$(find mixed_mission)/worlds/olival.world"/>
+
+  <arg name="robot" default="$(find aula_gazebo)/robot/robot.urdf.xacro"/>
+  <arg name="z" default="0.15"/>
+  <arg name="y" default="24.0"/>
+  <arg name="x" default="5.0"/>
+
+  <arg name="rvizconfig" default="$(find mixed_mission)/configs/rviz/husky.rviz" />
+
+
+
+  <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+  <arg name="world_name" value="$(arg world)" />
+    <arg name="debug" value="$(arg debug)" />
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    <arg name="headless" value="$(arg headless)"/>
+  </include>
+
+  <param name="robot_description" command="$(find xacro)/xacro.py $(arg robot)" />
+
+  <!-- push robot_description to factory and spawn robot in gazebo -->
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
+        args="-x $(arg x) -y $(arg y) -z $(arg z) -urdf -model robot -param robot_description" respawn="false" output="screen" />
+
+  <node pkg="robot_state_publisher" type="robot_state_publisher"  name="robot_state_publisher">
+    <param name="publish_frequency" type="double" value="10.0" />
+  </node>
+
+  <!-- MAP SERVER -->  
+  
+  <!--<node pkg="map_server" type="map_server" name="mapa" args="$(find aula_gazebo)/maps/map_final_certo.yaml" />-->
+  
+  <node pkg="map_server" type="map_server" name="mapa" args="$(find mixed_mission)/maps/final.yaml" />
+  
+  <!--<node pkg="gmapping" type="slam_gmapping" name="create_map">
+    <param name="maxRange" value="30.0"/>< colocar em 30 
+    <param name="delta" value="0.05"/> 
+  </node> -->
+  
+  <!-- move stuff -->
+  
+  <!-- monte carlo -->
+  
+  <include file="$(find aula_gazebo)/launch/amcl_diff.launch" />
+  <!--move base -->
+  
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <rosparam file="$(find aula_gazebo)/maps/costmap_common_params.yaml" command="load" ns="global_costmap" /> 
+    <rosparam file="$(find aula_gazebo)/maps/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find aula_gazebo)/maps/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find aula_gazebo)/maps/global_costmap_params.yaml" command="load" /> 
+    <rosparam file="$(find aula_gazebo)/planner_settings/base_local_planner_params.yaml" command="load" />
+  </node>
+
+
+  <!--RVIZ NODE-->
+  
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" /> 
+
+</launch>

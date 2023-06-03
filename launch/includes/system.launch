@@ -1,0 +1,9 @@
+<launch>
+	<include file="$(find mixed_mission)/launch/includes/mavros_posix_sitl.launch">
+	</include>
+
+	<include file="$(find mixed_mission)/launch/includes/spawn_husky.launch">
+	</include>
+
+	
+</launch>

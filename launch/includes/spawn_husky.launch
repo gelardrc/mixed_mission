@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!--
+Software License Agreement (BSD)
+-->
+<launch>
+
+  <arg name="multimaster" default="false"/>
+ 
+  <arg name="robot_namespace" default="/"/>
+
+  <arg name="x" default="5.0"/>
+  <arg name="y" default="24.0"/>
+  <arg name="z" default="0.0"/>
+  <arg name="yaw" default="0.0"/>
+
+  <!-- Optionally disable teleop control -->
+  <arg name="joystick" default="false" />
+
+  <group ns="$(arg robot_namespace)">
+
+    <group if="$(arg multimaster)">
+      <include file="$(find mixed_mission)/launch/include/description.launch" >
+        <arg name="robot_namespace" value="$(arg robot_namespace)"/>
+      </include>
+
+      <include file="$(find multimaster_launch)/launch/multimaster_gazebo_robot.launch">
+        <arg name="gazebo_interface" value="$(find husky_control)/config/gazebo_interface.yaml" />
+        <arg name="robot_namespace" value="$(arg robot_namespace)"/>
+      </include>
+
+      <!-- For multimaster bringup, need to load the controller config -->
+      <rosparam command="load" file="$(find husky_control)/config/control.yaml" />
+    </group>
+
+    <!-- For single master bringup, run robot control on the gazebo master -->
+    <!-- Note that husky_description/description.launch is already included in husky_control/control.launch. -->
+    <group unless="$(arg multimaster)">
+      <include file="$(find mixed_mission)/launch/includes/husky_control.launch">
+        <arg name="multimaster" value="$(arg multimaster)"/>
+      </include>
+      <!--<include file="$(find husky_control)/launch/teleop.launch">
+        <arg name="joystick" value="$(arg joystick)" />
+      </include>-->
+    </group>
+
+    <!-- Additional nodes for specific accessories -->
+    <!--<group if="$(optenv HUSKY_REALSENSE_ENABLED 0)">
+      <include file="$(find husky_gazebo)/launch/realsense.launch" />
+    </group>-->
+
+    <!--gelo-->
+
+
+
+    <!-- Spawn robot in gazebo -->
+    <node name="spawn_husky_model" pkg="gazebo_ros" type="spawn_model"
+        args="-x $(arg x)
+              -y $(arg y)
+              -z $(arg z)
+              -Y $(arg yaw)
+              -unpause
+              -urdf
+              -param robot_description
+              -model husky
+              -robot_namespace $(arg robot_namespace)" />
+
+  </group>
+
+</launch>

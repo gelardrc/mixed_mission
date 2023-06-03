@@ -1,0 +1,14 @@
+<launch>
+    <!-- mapa -->
+    <node pkg="map_server" type="map_server" name="mapa" args="$(find mixed_mission)/maps/final.yaml" />
+    
+    <!-- monte carlo localization -->
+
+    <include file="$(find mixed_mission)/launch/includes/amcl_husky.launch" />
+
+
+    <!-- move_base -->
+
+    <include file="$(find mixed_mission)/launch/includes/move_base.launch" />
+
+</launch>

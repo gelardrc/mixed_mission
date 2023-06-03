@@ -1,0 +1,8 @@
+<launch>
+	<include file="$(find mixed_mission)/launch/includes/worlds.launch" />
+	<include file="$(find mixed_mission)/launch/includes/spawn_husky.launch" />
+	<node pkg="map_server" type="map_server" name="mapa" args="$(find mixed_mission)/maps/final2.yaml" />
+	<include file="$(find mixed_mission)/launch/includes/amcl_diff.launch" />
+	<include file="$(find husky_navigation)/launch/move_base.launch" />
+	
+</launch>

@@ -42,9 +42,13 @@ _______________________________________________________________________
 > catkin_make
 >
 > ⚠️  Px4 is a complex package, we suggest that if you want to run this code, first make sure that everything in <a href="https://docs.px4.io/main/en/dev_setup/getting_started.html"> Px4 </a> is full functioning and then continue running the next sections. The same for husky, but it is much easier to install.
+> ⚠️ Instead of Husky package you can use a version of <a href="https://github.com/RBinsonB/nexus_4wd_mecanum_simulator.git">Nexus robot</a> modified by the same team that produces this work.
+> git clone src/https://github.com/gelardrc/tatiana_nexus.git
 
 __________________________________________________________________________
 
 ### Testing systems
+
+
 
 

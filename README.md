@@ -1,6 +1,6 @@
 # Heterogeneous Multi-Robot Collaboration for Covered Path Planning in Partially Known Dynamic Environments
 
-This repository holds a simulation in a substation environment using ROS together with px4 and husky packages. The example above simulated two UAVs and one husky, but its pretty simple to escalate the simulation to use more agents.
+This repository holds a simulation in a substation environment using ROS together with px4 and husky packages. The example above simulated two UAVs and one husky, but its pretty simple to escalate the simulation to use more agents or even to change the robots.
 
 ______________________________________________________________________
 ### Dependences: 

@@ -43,7 +43,7 @@ catkin_make
 ~~~
 git clone src/https://github.com/gelardrc/tatiana_nexus.git
 ~~~
-</summary>
+</details>
 
 <details open>
 

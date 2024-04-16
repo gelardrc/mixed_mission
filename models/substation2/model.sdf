@@ -1,0 +1,145 @@
+<?xml version="1.0" ?>
+<sdf version="1.0">
+  <model name="Substation2">
+    <static>true</static>
+    <link name="link">
+     <pose>0 0 -15.50 0 0 0</pose>
+     <collision name="wall1">
+        <geometry>
+          <mesh>
+            <uri>model://substation2/model.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <!--
+      <collision name='transformador'>
+        <pose>8.32 36.469 17.551790 0 0 0</pose>
+	<geometry>
+          <box>
+	    <size>4.27 4.08 4.10</size>
+	  </box>
+        </geometry>
+      </collision>
+      <collision name='torre_direita_frente'>
+        <pose>11.559500 41.018200 22.0 0 0 0</pose>
+	<geometry>
+          <cylinder>
+	   <radius>0.5</radius>
+	   <length>12.93</length>  
+	  </cylinder>
+        </geometry>
+      </collision>
+      <collision name='torre_direita_tras'>
+        <pose>4.626470 40.929700 22.0 0 0 0</pose>
+	<geometry>
+          <cylinder>
+	   <radius>0.5</radius>
+	   <length>12.93</length>  
+	  </cylinder>
+        </geometry>
+      </collision>
+      <collision name='torre_esquerda_frente'>
+        <pose>11.529492 20.439067 22.0 0 0 0</pose>
+	<geometry>
+          <cylinder>
+	   <radius>0.5</radius>
+	   <length>12.93</length>  
+	  </cylinder>
+        </geometry>
+      </collision>
+      <collision name='torre_esquerda_tras'>
+        <pose>4.583130 20.421000 22.0 0 0 0</pose>
+	<geometry>
+          <cylinder>
+	   <radius>0.5</radius>
+	   <length>12.93</length>  
+	  </cylinder>
+        </geometry>
+      </collision>
+      <collision name='barra_meio'>
+        <pose>8.038595 20.412010 24.5052204 -3.141124 -1.564756 3.141124</pose>
+	<geometry>
+          <cylinder>
+	   <radius>0.25</radius>
+	   <length>6.93</length>  
+	  </cylinder>
+        </geometry>
+      </collision>
+      <collision name='muro_frente'>
+        <pose>13.128309 24.770290 17.551790 0 0 0</pose>
+	<geometry>
+          <box>
+	    <size>0.18 18.06 4.57</size>
+	  </box>
+        </geometry>
+      </collision>
+      <collision name='muro_esquerdo'>
+        <pose>8.135184 15.956599 17.551790 0 0 -1.57</pose>
+	<geometry>
+          <box>
+	    <size>0.18 9.87 4.57</size>
+	  </box>
+        </geometry>
+      </collision>
+      <collision name='muro_fundo'>
+        <pose>3.037594 29.782667 17.5517900 0 0</pose>
+	<geometry>
+          <box>
+	    <size>0.18 26.95 4.57</size>
+	  </box>
+        </geometry>
+      </collision>
+      <collision name='muro_direito'>
+        <pose>7.432670 42.372887 17.551790 0 0 -1.57</pose>
+	<geometry>
+          <box>
+	    <size>0.18 9.87 4.57</size>
+	  </box>
+        </geometry>
+      </collision>
+      <collision name='murinho_direita'>
+        <pose>13.116611 40.746731 17.551790 0 0 0</pose>
+	<geometry>
+          <box>
+	    <size>0.18 3.39 4.57</size>
+	  </box>
+        </geometry>
+      </collision>
+      <collision name='linha_1_poste_frente'>
+        <pose>10.379700 33.849600 17.551790 0 0 0</pose>
+	<geometry>
+          <cylinder>
+	   <radius>0.30</radius>
+	   <length>4.50</length>  
+	  </cylinder>
+        </geometry>
+      </collision>
+      <collision name='linha_1_poste_meio'>
+        <pose>8.398870 33.849600 17.551790 0 0 0</pose>
+	<geometry>
+          <cylinder>
+	   <radius>0.30</radius>
+	   <length>4.50</length>  
+	  </cylinder>
+        </geometry>
+      </collision>
+      <collision name='linha_1_poste_tras'>
+        <pose>6.415076 33.849600 17.551790 0 0 0</pose>
+	<geometry>
+          <cylinder>
+	   <radius>0.30</radius>
+	   <length>4.50</length>  
+	  </cylinder>
+        </geometry>
+      </collision>
+      -->
+      <visual name="visual1">
+        <geometry>
+          <mesh>
+            <uri>model://substation2/model.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>
